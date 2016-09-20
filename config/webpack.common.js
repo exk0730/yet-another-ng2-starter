@@ -14,6 +14,7 @@ const HtmlWebpackPlugin = require('html-webpack-plugin');
 const ForkCheckerPlugin = require('awesome-typescript-loader').ForkCheckerPlugin;
 const HtmlElementsPlugin = require('./html-elements-plugin');
 const AssetsPlugin = require('assets-webpack-plugin');
+const ContextReplacementPlugin = require('webpack/lib/ContextReplacementPlugin');
 
 /*
  * Webpack Constants
@@ -105,7 +106,7 @@ module.exports = function (options) {
                     loader: 'string-replace-loader',
                     query: {
                         search: '(System|SystemJS)(.*[\\n\\r]\\s*\\.|\\.)import\\((.+)\\)',
-                        replace: '$1.import($3).then(mod => mod.__esModule ? mod.default : mod)',
+                        replace: '$1.import($3).then(mod => (mod.__esModule && mod.default) ? mod.default : mod)',
                         flags: 'g'
                     },
                     include: [helpers.root('src')]
@@ -207,6 +208,7 @@ module.exports = function (options) {
                 filename: 'webpack-assets.json',
                 prettyPrint: true
             }),
+
             /*
              * Plugin: ForkCheckerPlugin
              * Description: Do type checking in a separate process, so webpack don't need to wait.
@@ -214,6 +216,7 @@ module.exports = function (options) {
              * See: https://github.com/s-panferov/awesome-typescript-loader#forkchecker-boolean-defaultfalse
              */
             new ForkCheckerPlugin(),
+
             /*
              * Plugin: CommonsChunkPlugin
              * Description: Shares common code between the pages.
@@ -225,6 +228,19 @@ module.exports = function (options) {
             new webpack.optimize.CommonsChunkPlugin({
                 name: ['polyfills', 'vendor'].reverse()
             }),
+
+            /**
+             * Plugin: ContextReplacementPlugin
+             * Description: Provides context to Angular's use of System.import
+             *
+             * See: https://webpack.github.io/docs/list-of-plugins.html#contextreplacementplugin
+             * See: https://github.com/angular/angular/issues/11580
+             */
+            new ContextReplacementPlugin(
+                // The (\\|\/) piece accounts for path separators in *nix and Windows
+                /angular(\\|\/)core(\\|\/)(esm(\\|\/)src|src)(\\|\/)linker/,
+                helpers.root('src') // location of your src
+            ),
 
             /*
              * Plugin: CopyWebpackPlugin
