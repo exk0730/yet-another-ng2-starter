@@ -17,7 +17,7 @@
 and [Webpack 2](http://webpack.github.io/) by [AngularClass](https://angularclass.com).
 
 Based on [Angular 2 Webpack Starter](https://github.com/AngularClass/angular2-webpack-starter). Refer to that repo for 
-commands and other 
+commands and other information.
 
 ### Quick start
 **Make sure you have Node version >= 5.0 and NPM >= 3**
