@@ -4,6 +4,7 @@
 
 const webpack = require('webpack');
 const helpers = require('./helpers');
+const path = require('path');
 
 /*
  * Webpack Plugins
@@ -181,6 +182,11 @@ module.exports = function (options) {
                 {
                     test: /\.(jpg|png|gif)$/,
                     loader: 'file'
+                },
+                {
+                    test: /\.scss$/,
+                    exclude: /node_modules/,
+                    loaders: ['raw-loader', 'sass-loader'] // sass-loader not scss-loader
                 }
             ],
             postLoaders: [
@@ -194,7 +200,13 @@ module.exports = function (options) {
                     }
                 }
             ]
+        },
 
+        /*
+         * Tell the sass loader which directory to search for files
+         */
+        sassLoader: {
+            includePaths: [path.resolve(__dirname, '../src/assets')]
         },
 
         /*
