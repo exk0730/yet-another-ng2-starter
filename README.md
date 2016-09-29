@@ -115,6 +115,10 @@ yaas/
 
 ```
 
+## Yeoman Generator (Helper)
+I've also created a small helper project that can get rid of a lot of boilerplate files when creating new features in
+this project. Check it out [here](https://github.com/exk0730/generator-yaas-helper).
+
 ### IDE Issues
 If you're using WebStorm, I suggest setting your TypeScript compiler to a globally-installed TypeScript 2.0 version. For
 example, my project has this as its TypeScript compiler path (.nvm is [NVM](https://github.com/creationix/nvm)):
