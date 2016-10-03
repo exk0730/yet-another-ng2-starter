@@ -126,4 +126,5 @@ example, my project has this as its TypeScript compiler path (.nvm is [NVM](http
 ```
 /Users/user/.nvm/versions/node/v5.10.1/lib/node_modules/typescript/lib/
 ```
-under `Webstorm -> Preferences -> Languages & Frameworks -> TypeScript`.
+under `Webstorm -> Preferences -> Languages & Frameworks -> TypeScript`. Also be sure to check the `Use TypeScript service (Experimental)`
+if you have Webstorm 2016.2.

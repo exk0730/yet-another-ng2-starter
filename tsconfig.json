@@ -14,9 +14,12 @@
         "core": ["app/core"],
         "shared": ["app/shared"]
     },
+    "lib": [
+      "dom",
+      "es6"
+    ],
     "types": [
       "lodash",
-      "core-js",
       "hammerjs",
       "jasmine",
       "node",
