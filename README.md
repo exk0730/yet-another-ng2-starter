@@ -40,7 +40,7 @@ npm start
 npm run server:dev:hmr
 ```
 
-Point your browser to `locahost:9000`.
+Point your browser to `localhost:9000`.
 
 ## Purpose
 This repository serves as a base skeleton for projects that require Angular2, Webpack, TypeScript 2, Ng2-Translate, and NGRX. It also
