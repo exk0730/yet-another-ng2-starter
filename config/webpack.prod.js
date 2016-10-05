@@ -30,14 +30,9 @@ const METADATA = webpackMerge(commonConfig({env: ENV}).metadata, {
     HMR: false
 });
 
-const ENTRY = webpackMerge(commonConfig({env: ENV}).entry, {
-    main: './src/main.prod.browser.ts'
-});
 
 module.exports = function (env) {
     return webpackMerge(commonConfig({env: ENV}), {
-        entry: ENTRY,
-
         /**
          * Switch loaders to debug mode.
          *
@@ -147,25 +142,25 @@ module.exports = function (env) {
              */
             // NOTE: To debug prod builds uncomment //debug lines and comment //prod lines
             new UglifyJsPlugin({
-                // beautify: false, //debug
-                // mangle: false, //debug
-                // dead_code: false, //debug
-                // unused: false, //debug
-                // deadCode: false, //debug
-                // compress: {
-                //   screw_ie8: true,
-                //   keep_fnames: true,
-                //   drop_debugger: false,
-                //   dead_code: false,
-                //   unused: false
-                // }, // debug
-                // comments: true, //debug
+                beautify: false, //debug
+                mangle: false, //debug
+                dead_code: false, //debug
+                unused: false, //debug
+                deadCode: false, //debug
+                compress: {
+                  screw_ie8: true,
+                  keep_fnames: true,
+                  drop_debugger: false,
+                  dead_code: false,
+                  unused: false
+                }, // debug
+                comments: true, //debug
 
 
-                beautify: false, //prod
-                mangle: {screw_ie8: true, keep_fnames: true}, //prod
-                compress: {screw_ie8: true}, //prod
-                comments: false //prod
+                // beautify: false, //prod
+                // mangle: {screw_ie8: true, keep_fnames: true}, //prod
+                // compress: {screw_ie8: true}, //prod
+                // comments: false //prod
             }),
 
             /**

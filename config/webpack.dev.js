@@ -26,10 +26,6 @@ const METADATA = webpackMerge(commonConfig({env: ENV}).metadata, {
     HMR: HMR
 });
 
-const ENTRY = webpackMerge(commonConfig({env: ENV}).entry, {
-    main: './src/main.dev.browser.ts'
-});
-
 /**
  * Webpack configuration
  *
@@ -37,8 +33,6 @@ const ENTRY = webpackMerge(commonConfig({env: ENV}).entry, {
  */
 module.exports = function (options) {
     return webpackMerge(commonConfig({env: ENV}), {
-        entry: ENTRY,
-
         /**
          * Merged metadata from webpack.common.js for index.html
          *

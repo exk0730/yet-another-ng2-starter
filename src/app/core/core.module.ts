@@ -30,8 +30,7 @@ if (ENV === 'development') {
 @NgModule({
     bootstrap: [Core],
     declarations: [Core, AppEntry],
-    imports: imports,
-    providers: []
+    imports: imports
 })
 export class CoreModule {
     constructor(private appRef: ApplicationRef, private store: Store<any>) {}
