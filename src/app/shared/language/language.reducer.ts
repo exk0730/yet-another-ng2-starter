@@ -1,22 +1,23 @@
-import { Action, ActionReducer } from '@ngrx/store';
+import { ActionReducer } from '@ngrx/store';
 
-import { LanguageActions } from './language.actions';
+import * as languageActions from './language.actions';
 
 export interface ILanguageState {
     lang: string;
 }
 
-const initialState: ILanguageState = {
+const initialState: ILanguageState = <ILanguageState>{
     lang: 'en'
 };
 
 export const languageReducer: ActionReducer<ILanguageState> =
-    (state: ILanguageState = initialState, action: Action): ILanguageState => {
+    (state: ILanguageState = initialState, action: languageActions.Actions): ILanguageState => {
         switch (action.type) {
-            case LanguageActions.UPDATE:
+            case languageActions.ActionTypes.UPDATE: {
                 return {
                     lang: action.payload
                 };
+            }
 
             default:
                 return state;

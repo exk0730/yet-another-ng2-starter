@@ -1,10 +1,10 @@
 import { NO_ERRORS_SCHEMA } from '@angular/core';
 import { TestBed } from '@angular/core/testing';
+import { StoreModule } from '@ngrx/store';
 
-import { getStore } from '../../testing';
 import { LanguageSwitcher } from './language-switcher.component';
 import { ILanguageState, languageReducer } from './language.reducer';
-import { LanguageActions } from './language.actions';
+import * as languageActions from './language.actions';
 import { LanguageService } from './language.service';
 import { Config } from '../config';
 import { SharedModule } from '../shared.module';
@@ -22,7 +22,7 @@ describe('LoginComponent', () => {
             declarations: [],
             imports: [
                 SharedModule,
-                getStore({language: spy})
+                StoreModule.provideStore({language: spy})
             ],
             schemas: [NO_ERRORS_SCHEMA]
         });
@@ -50,6 +50,6 @@ describe('LoginComponent', () => {
         let initialState: ILanguageState = {
             lang: 'en'
         };
-        expect(spy.calls.mostRecent().args).toEqual([initialState, LanguageActions.update('es')]);
+        expect(spy.calls.mostRecent().args).toEqual([initialState, new languageActions.UpdateAction('es')]);
     });
 });

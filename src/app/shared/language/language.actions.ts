@@ -1,15 +1,13 @@
-import { Injectable } from '@angular/core';
 import { Action } from '@ngrx/store';
 
-const CATEGORY = '[Language]';
+export const ActionTypes = {
+    UPDATE: <'[Language] Update'>('[Language] Update')
+};
 
-@Injectable()
-export class LanguageActions {
-    static UPDATE = `${CATEGORY} Updated`;
-    static update(lang: string): Action {
-        return {
-            type: LanguageActions.UPDATE,
-            payload: lang
-        };
-    }
+export class UpdateAction implements Action {
+    type = ActionTypes.UPDATE;
+
+    constructor(public payload: string) {}
 }
+
+export type Actions = UpdateAction;

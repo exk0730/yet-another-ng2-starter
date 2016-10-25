@@ -5,7 +5,7 @@ import { TranslateService } from 'ng2-translate';
 import * as _ from 'lodash';
 
 import { ILang } from './language.interface';
-import { LanguageActions } from './language.actions';
+import * as languageActions from './language.actions';
 import { ILanguageState } from './language.reducer';
 import { WindowService } from '../window';
 import { IAppStore } from '../store';
@@ -36,7 +36,7 @@ export class LanguageService {
 
     changeLang(lang: string) {
         if (_.includes(_.map(LanguageService.SUPPORTED_LANGUAGES, 'code'), lang)) {
-            this.store.dispatch(LanguageActions.update(lang));
+            this.store.dispatch(new languageActions.UpdateAction(lang));
         }
     }
 }
