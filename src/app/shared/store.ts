@@ -1,4 +1,5 @@
 import { ActionReducer, Action, combineReducers } from '@ngrx/store';
+import { routerReducer, RouterState } from '@ngrx/router-store';
 import { compose } from '@ngrx/core';
 
 import { ILanguageState, languageReducer } from './language';
@@ -14,6 +15,7 @@ const stateSetter = (reducer: ActionReducer<any>): ActionReducer<any> => {
 
 export interface IAppStore {
     language: ILanguageState;
+    router: RouterState;
 }
 
 let reducers;
@@ -23,7 +25,8 @@ if (ENV === 'test') {
     };
 } else {
     reducers = compose(stateSetter, combineReducers)({
-        language: languageReducer
+        language: languageReducer,
+        router: routerReducer,
     });
 }
 export const NGRX_REDUCERS = reducers;

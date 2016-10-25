@@ -5,6 +5,7 @@ import { RouterModule } from '@angular/router';
 import { createNewHosts, createInputTransfer, removeNgStyles } from '@angularclass/hmr';
 import { StoreModule, Store } from '@ngrx/store';
 import { EffectsModule } from '@ngrx/effects';
+import { RouterStoreModule } from '@ngrx/router-store';
 import { StoreDevtoolsModule } from '@ngrx/store-devtools';
 import { StoreLogMonitorModule, useLogMonitor } from '@ngrx/store-log-monitor';
 
@@ -17,6 +18,7 @@ let imports = [
     BrowserModule,
     RouterModule.forRoot(routes, {useHash: true}),
     StoreModule.provideStore(NGRX_REDUCERS),
+    RouterStoreModule.connectRouter(),
     SharedModule
 ];
 
